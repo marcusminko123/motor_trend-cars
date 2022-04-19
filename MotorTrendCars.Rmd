@@ -1,0 +1,27 @@
+---
+title: "motor_trend-data"
+author: "Marcus Minko"
+date: "4/19/2022"
+output: html_document
+---
+
+```{r data-packages}
+library(tidyverse)
+
+glimpse(mtcars)
+
+#plotting the reltionship between horsepower and mpg with added features to discrimate between different cylinder types
+
+mtcars %>% 
+  ggplot(aes(x = hp, y = mpg)) + 
+  geom_point(aes(size = cyl, color = cyl)) + 
+  labs(title = "Relationship between Horsepower and MPG",        subtitle = "by # of cylinders", 
+       x = "Horsepower", 
+       y = "Miles Per Gallon", 
+       color = "Cylinders") + 
+  scale_color_viridis_b() + 
+  scale_size_continuous(range = c(3,5))
+
+#As expected, 4-cylinder vehicles have to highest mpg and 8-cylinder have the lowest. Interestingly, this visual shows that increases in horsepower have the strongest effect of reducing mpg on the 4-cylinder cars. There is much less of an effect on 8-cylinder cars.
+
+```
